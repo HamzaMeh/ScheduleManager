@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Schedule Manager</string>
+    <string name="title_activity_home">Home</string>
+
+    <string-array name="weekdays">
+        <item name="Monday">Monday</item>
+        <item name="Tuesday">Tuesday</item>
+        <item name="Wednesday">Wednesday</item>
+        <item name="Thursday">Thursday</item>
+        <item name="Friday">Friday</item>
+        <item name="Saturday">Saturday</item>
+        <item name="Sunday">Sunday</item>
+    </string-array>
 </resources>

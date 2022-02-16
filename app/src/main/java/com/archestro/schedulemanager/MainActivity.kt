@@ -3,11 +3,17 @@ package com.archestro.schedulemanager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.archestro.schedulemanager.presentation.component.StandardScaffold
+import com.archestro.schedulemanager.presentation.util.Navigation
+import com.archestro.schedulemanager.presentation.util.Screen
+import com.archestro.schedulemanager.ui.home.HomeScreen
 import com.archestro.schedulemanager.ui.theme.ScheduleManagerTheme
 
 class MainActivity : ComponentActivity() {
@@ -15,24 +21,24 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ScheduleManagerTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                Surface(
+                    color = MaterialTheme.colors.background,
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    val navController = rememberNavController()
+                    val navBackStackEntry by navController.currentBackStackEntryAsState()
+                    StandardScaffold(
+                        navController = navController,
+                        showBottomBar = navBackStackEntry?.destination?.route in listOf(
+                            Screen.HomeScreen.route,
+                        ),
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        Navigation(navController)
+                    }
+
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    ScheduleManagerTheme {
-        Greeting("Android")
     }
 }
