@@ -13,7 +13,6 @@ import androidx.navigation.compose.rememberNavController
 import com.archestro.schedulemanager.presentation.component.StandardScaffold
 import com.archestro.schedulemanager.presentation.util.Navigation
 import com.archestro.schedulemanager.presentation.util.Screen
-import com.archestro.schedulemanager.ui.home.HomeScreen
 import com.archestro.schedulemanager.ui.theme.ScheduleManagerTheme
 
 class MainActivity : ComponentActivity() {
@@ -40,5 +39,9 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
+
     }
 }
+
+
