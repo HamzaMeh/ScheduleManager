@@ -2,8 +2,6 @@ package com.archestro.schedulemanager.ui.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -12,12 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringArrayResource
 import androidx.navigation.NavController
 import com.archestro.schedulemanager.R
-import com.archestro.schedulemanager.ui.ScheduleComponent
-import com.archestro.schedulemanager.ui.ScheduleItem
+import com.archestro.schedulemanager.ui.scheduleitem.ScheduleComponent
 import com.archestro.schedulemanager.ui.theme.paddingMedium
 import com.archestro.schedulemanager.ui.theme.paddingSmall
-import com.archestro.schedulemanager.ui.theme.paddingXSmall
-import io.github.boguszpawlowski.composecalendar.StaticCalendar
 
 @Composable
 fun HomeScreen(

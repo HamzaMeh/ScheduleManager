@@ -1,4 +1,4 @@
-package com.archestro.schedulemanager.ui
+package com.archestro.schedulemanager.ui.scheduleitem
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
