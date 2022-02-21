@@ -16,13 +16,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.rememberNavController
 import com.archestro.schedulemanager.R
+import com.archestro.schedulemanager.presentation.util.Screen
 import com.archestro.schedulemanager.ui.home.CalendarView
 import kotlinx.coroutines.launch
 import java.util.*
 
 @Composable
 fun SubjectDialog() {
+    val navController = rememberNavController()
     val context = LocalContext.current
     val scaffoldState = rememberScaffoldState()
     var subjectValue by remember {
@@ -100,9 +103,9 @@ fun SubjectDialog() {
                 Spacer(modifier = Modifier.size(16.dp))
                 Button(
                     onClick = {
-                              //TODO, OPEN CALENDAR AFTER ONCLICK
+                              //TODO, OPEN CALENDAR AFTER ONCLICK (calendar screen?)
                              //CalendarView()
-
+                            //navController.navigate(Screen.CalendarScreen.route)
                         },
                     modifier = Modifier
                         .padding(0.dp, 0.dp, 24.dp, 0.dp),
