@@ -11,9 +11,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.archestro.schedulemanager.domain.model.ScheduleModelItem
 import com.archestro.schedulemanager.ui.component.WeekHeader
+import com.archestro.schedulemanager.ui.subjectdialog.SubjectDialog
 import io.github.boguszpawlowski.composecalendar.SelectableCalendar
 import io.github.boguszpawlowski.composecalendar.day.DayState
 import io.github.boguszpawlowski.composecalendar.rememberSelectableCalendarState
@@ -74,6 +76,21 @@ fun DaySchedule(
                         .background(MaterialTheme.colors.primary)
                 )
             }
+        }
+    }
+}
+
+@Preview
+@Composable
+fun CalendarPreview(){
+    Box(
+    modifier = Modifier
+        .padding(20.dp)
+        .fillMaxSize(),
+    contentAlignment = Alignment.Center
+    ) {
+        Column() {
+            CalendarView()
         }
     }
 }
