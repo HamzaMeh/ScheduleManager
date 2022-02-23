@@ -3,8 +3,12 @@ package com.archestro.schedulemanager.ui.home
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringArrayResource
@@ -19,6 +23,7 @@ fun HomeScreen(
     navController: NavController
 ){
     val array= stringArrayResource(id = R.array.weekdays)
+
     Column {
         CalendarView()
         ScheduleComponent()

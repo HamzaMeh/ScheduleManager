@@ -1,4 +1,4 @@
-package com.archestro.schedulemanager.domain.model
+package com.archestro.schedulemanager.data.model
 
 import java.time.LocalDate
 

@@ -16,6 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.archestro.schedulemanager.R
 import com.archestro.schedulemanager.presentation.util.Screen
@@ -24,8 +25,10 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 @Composable
-fun SubjectDialog() {
-    val navController = rememberNavController()
+fun SubjectDialog(
+    navController: NavController
+) {
+    //val navController = rememberNavController()
     val context = LocalContext.current
     val scaffoldState = rememberScaffoldState()
     var subjectValue by remember {
@@ -38,110 +41,103 @@ fun SubjectDialog() {
         mutableStateOf("")
     }
     val scope = rememberCoroutineScope()
-
-    Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        scaffoldState = scaffoldState
+    Column(
+        horizontalAlignment = CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 30.dp)
     ) {
-        Column(
-            horizontalAlignment = CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 30.dp)
+        Text(
+            text = "Add subject",
+            modifier = Modifier.padding(32.dp, 8.dp, 16.dp, 8.dp),
+            style = MaterialTheme.typography.h6
+        )
+
+        Spacer(modifier = Modifier.padding(8.dp))
+
+        TextField(
+            value = subjectValue,
+            label = {
+                Text("Subject")
+            },
+            onValueChange = {
+                subjectValue = it
+            },
+            singleLine = true,
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.padding(8.dp))
+        TextField(
+            value = teacherValue,
+            label = {
+                Text("Teacher")
+            },
+            onValueChange = {
+                teacherValue = it
+            },
+            singleLine = true,
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.padding(8.dp))
+        /*TextField(
+            value = roomValue,
+            label = {
+                Text("Room")
+            },
+            onValueChange = {
+                roomValue = it
+            },
+            singleLine = true,
+            modifier = Modifier.fillMaxWidth()
+        )*/
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = "Add subject",
-                modifier = Modifier.padding(32.dp, 8.dp, 16.dp, 8.dp),
-                style = MaterialTheme.typography.h6
-            )
 
-            Spacer(modifier = Modifier.padding(8.dp))
-
-            TextField(
-                value = subjectValue,
-                label = {
-                    Text("Subject")
+            Text(text = "Select day from Calendar:", modifier = Modifier.padding(24.dp, 0.dp))
+            Spacer(modifier = Modifier.size(16.dp))
+            Button(
+                onClick = {
+                    //TODO, OPEN CALENDAR AFTER ONCLICK (calendar screen?)
+                    //CalendarView()
                 },
-                onValueChange = {
-                    subjectValue = it
-                },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth()
-            )
-            Spacer(modifier = Modifier.padding(8.dp))
-            TextField(
-                value = teacherValue,
-                label = {
-                    Text("Teacher")
-                },
-                onValueChange = {
-                    teacherValue = it
-                },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth()
-            )
-            Spacer(modifier = Modifier.padding(8.dp))
-            /*TextField(
-                value = roomValue,
-                label = {
-                    Text("Room")
-                },
-                onValueChange = {
-                    roomValue = it
-                },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth()
-            )*/
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-
-                Text(text = "Select day from Calendar:", modifier = Modifier.padding(24.dp, 0.dp))
-                Spacer(modifier = Modifier.size(16.dp))
-                Button(
-                    onClick = {
-                              //TODO, OPEN CALENDAR AFTER ONCLICK (calendar screen?)
-                             //CalendarView()
-                            //navController.navigate(Screen.CalendarScreen.route)
-                        },
-                    modifier = Modifier
-                        .padding(0.dp, 0.dp, 24.dp, 0.dp),
+                modifier = Modifier
+                    .padding(0.dp, 0.dp, 24.dp, 0.dp),
 
                 )
-                {
-                    Icon(painter = painterResource(id = R.drawable.ic_calendar),
-                        contentDescription = "Calendar"
-                    )
-                }
-
-            }
-            Spacer(modifier = Modifier.padding(8.dp))
-
-            //TODO THIS TEXT SHOULD APPEAR IF YOU HAVE CHOSEN A DAY OR MORE IN THE CALENDAR
-            Text(text = "days selected", color = Color.Gray, fontSize = 12.sp)
-
-            Spacer(modifier = Modifier.padding(8.dp))
-
-            ShowTimePicker(context = context, "From")
-
-            Spacer(modifier = Modifier.padding(8.dp))
-
-            ShowTimePicker(context = context, "To")
-
-            Spacer(modifier = Modifier.padding(16.dp))
-            Button(onClick = {
-                scope.launch {
-                    scaffoldState.snackbarHostState.showSnackbar("Subject $subjectValue saved")
-                }
-            }) {
-
-                Text("Save")
+            {
+                Icon(painter = painterResource(id = R.drawable.ic_calendar),
+                    contentDescription = "Calendar"
+                )
             }
 
         }
+        Spacer(modifier = Modifier.padding(8.dp))
+
+        //TODO THIS TEXT SHOULD APPEAR IF YOU HAVE CHOSEN A DAY OR MORE IN THE CALENDAR
+        Text(text = "days selected", color = Color.Gray, fontSize = 12.sp)
+
+        Spacer(modifier = Modifier.padding(8.dp))
+
+        ShowTimePicker(context = context, "From")
+
+        Spacer(modifier = Modifier.padding(8.dp))
+
+        ShowTimePicker(context = context, "To")
+
+        Spacer(modifier = Modifier.padding(16.dp))
+        Button(onClick = {
+            scope.launch {
+                scaffoldState.snackbarHostState.showSnackbar("Subject $subjectValue saved")
+            }
+        }) {
+
+            Text("Save")
+        }
+
     }
 }
 
@@ -186,6 +182,7 @@ fun ShowTimePicker(context: Context, title: String) {
 
 }
 
+/*
 
 @Preview
 @Composable
@@ -200,4 +197,4 @@ fun TextPreview() {
             SubjectDialog()
         }
     }
-}
+}*/

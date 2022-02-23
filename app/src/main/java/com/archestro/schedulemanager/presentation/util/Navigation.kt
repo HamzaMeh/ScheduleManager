@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import com.archestro.schedulemanager.ui.home.CalendarScreen
 import com.archestro.schedulemanager.ui.home.CalendarView
 import com.archestro.schedulemanager.ui.home.HomeScreen
+import com.archestro.schedulemanager.ui.subjectdialog.SubjectDialog
 
 @Composable
 fun Navigation(navController: NavHostController){
@@ -20,8 +21,8 @@ fun Navigation(navController: NavHostController){
         composable(Screen.HomeScreen.route){
             HomeScreen(navController = navController)
         }
-        composable(Screen.CalendarScreen.route){
-            CalendarScreen(navController = navController)
+        composable(Screen.SubjectScreen.route){
+            SubjectDialog(navController = navController)
         }
 
 

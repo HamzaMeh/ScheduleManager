@@ -13,9 +13,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.archestro.schedulemanager.domain.model.ScheduleModelItem
+import com.archestro.schedulemanager.data.model.ScheduleModelItem
 import com.archestro.schedulemanager.ui.component.WeekHeader
-import com.archestro.schedulemanager.ui.subjectdialog.SubjectDialog
 import io.github.boguszpawlowski.composecalendar.SelectableCalendar
 import io.github.boguszpawlowski.composecalendar.day.DayState
 import io.github.boguszpawlowski.composecalendar.rememberSelectableCalendarState

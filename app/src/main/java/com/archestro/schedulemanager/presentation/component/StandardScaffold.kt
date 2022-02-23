@@ -7,6 +7,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.archestro.schedulemanager.R
@@ -32,7 +34,7 @@ fun StandardScaffold(
             route= Screen.SplashScreen.route),
         BottomMenuItem(
             title="Splash",
-            iconId = R.drawable.chat,
+            iconId = R.drawable.explore,
             route= Screen.SplashScreen.route),
         BottomMenuItem(
             title="Home",
@@ -50,7 +52,19 @@ fun StandardScaffold(
 
     content: @Composable () -> Unit
 ) {
+    val onClick={}
     Scaffold(
+        floatingActionButton =
+        {
+            if(navController.currentDestination?.route.equals(Screen.HomeScreen.route)){
+                FloatingActionButton(onClick =
+                {
+                    navController.navigate(Screen.SubjectScreen.route)
+                }) {
+                    Icon(Icons.Filled.Add,"")
+                }
+            }
+        },
         bottomBar = {
             if (showBottomBar) {
                 BottomAppBar(
