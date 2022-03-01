@@ -19,7 +19,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.archestro.schedulemanager.ui.theme.lakeGreen
-import com.archestro.schedulemanager.ui.theme.lakeLightGreen
 
 @Composable
 fun RepeatSchedule(){
@@ -66,9 +65,9 @@ fun RepeatSchedule(){
                         }
                         .background(
                             if (text == selectedOption) {
-                                lakeLightGreen
+                                lakeGreen
                             } else {
-                                Color.LightGray
+                                Color.Gray
                             }
                         )
                         .padding(
