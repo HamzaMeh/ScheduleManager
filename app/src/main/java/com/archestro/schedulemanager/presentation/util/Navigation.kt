@@ -24,6 +24,9 @@ fun Navigation(navController: NavHostController){
         composable(Screen.SubjectScreen.route){
             SubjectDialog(navController = navController)
         }
+        composable(Screen.CalendarScreen.route){
+            CalendarScreen(navController = navController)
+        }
 
 
     }

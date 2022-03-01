@@ -102,7 +102,7 @@ fun SubjectDialog(
             Button(
                 onClick = {
                     //TODO, OPEN CALENDAR AFTER ONCLICK (calendar screen?)
-                    //CalendarView()
+                    navController.navigate("calendar_screen")
                 },
                 modifier = Modifier
                     .padding(0.dp, 0.dp, 24.dp, 0.dp),
