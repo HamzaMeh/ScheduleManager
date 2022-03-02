@@ -1,16 +1,13 @@
 package com.archestro.schedulemanager.ui.home
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.archestro.schedulemanager.ui.component.DialogSchedule
+import com.archestro.schedulemanager.ui.component.BottomSheetRepeat
 
 @Composable
 fun CalendarScreen(
@@ -50,7 +47,7 @@ fun Repeat() {
                 tint = Color.Gray,
                 modifier = Modifier.size(24.dp)
             )*/
-            DialogSchedule()
+            BottomSheetRepeat()
         }
     }
 }

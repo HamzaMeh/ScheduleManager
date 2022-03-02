@@ -4,24 +4,20 @@ import android.annotation.SuppressLint
 import androidx.compose.animation.animateColor
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.archestro.schedulemanager.ui.theme.lakeGreen
+import kotlinx.coroutines.launch
 
 @Composable
 fun PersonalizedSchedule() {
@@ -36,21 +32,18 @@ fun PersonalizedSchedule() {
     )
 
     Column(
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxWidth(),
-
-
     ) {
-
-        val checkedState = remember{ mutableStateOf(false)}
+        val checkedState = remember { mutableStateOf(false) }
 
         daysRepeat.forEach { text ->
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier
-                    .padding(15.dp)
+                    .padding(5.dp)
                     .fillMaxWidth()
             ) {
                 Text(
@@ -117,23 +110,67 @@ fun CheckButton(
     }
 }
 
-/*@Preview("Favorite Button")
+
+@ExperimentalMaterialApi
 @Composable
-fun CheckButtonPreview() {
-    val (isChecked, setChecked) = remember { mutableStateOf(false) }
-    MaterialTheme {
-        Surface {
-            CheckButton(
-                isChecked = isChecked,
-                onClick = { setChecked(!isChecked) }
-            )
+fun BottomSheetPersonalized() {
+
+    val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(
+        bottomSheetState = BottomSheetState(BottomSheetValue.Collapsed)
+    )
+
+    val coroutineScope = rememberCoroutineScope()
+    BottomSheetScaffold(
+        scaffoldState = bottomSheetScaffoldState,
+        sheetContent = {
+            Box(
+                Modifier
+                    .fillMaxSize()
+                    .height(1000.dp)
+                    .background(Color.White)
+
+            ) {
+                Column(
+                    Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Top,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    PersonalizedSchedule()
+                }
+            }
+        }, sheetPeekHeight = 0.dp
+    ) {
+        Column(
+            Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+
+
+            Spacer(modifier = Modifier.size(16.dp))
+            Button(onClick = {
+
+                coroutineScope.launch {
+
+                    if (bottomSheetScaffoldState.bottomSheetState.isCollapsed) {
+                        bottomSheetScaffoldState.bottomSheetState.expand()
+                    } else {
+                        bottomSheetScaffoldState.bottomSheetState.collapse()
+                    }
+                }
+
+            }) {
+                Text(text = "Accept", fontSize = 18.sp, fontWeight = FontWeight.Bold)
+            }
         }
     }
-}*/
+}
 
 
+@OptIn(ExperimentalMaterialApi::class)
 @Preview
 @Composable
-fun previewRepeatDays(){
-    PersonalizedSchedule()
+fun previewBottomSheet() {
+    BottomSheetPersonalized()
 }
+
