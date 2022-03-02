@@ -59,6 +59,8 @@ fun PersonalizedSchedule() {
                 )
                 CheckButton(isChecked = checkedState.value, onClick = {
                     //TODO HANDLE ONCLICK
+                    checkedState.value = !checkedState.value
+
                 })
 
             }
@@ -171,6 +173,6 @@ fun BottomSheetPersonalized() {
 @Preview
 @Composable
 fun previewBottomSheet() {
-    BottomSheetPersonalized()
+    PersonalizedSchedule()
 }
 
